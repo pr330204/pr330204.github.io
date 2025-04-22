@@ -1,0 +1,190 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: http://localhost:7700/index.html
+Subject: Watch Embeder
+Date: Tue, 22 Apr 2025 16:05:08 +0530
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--KEnKA9tHyMyHeEPub5OOMz4z13PZCzBipO8l7Lz1NT----"
+
+
+------MultipartBoundary--KEnKA9tHyMyHeEPub5OOMz4z13PZCzBipO8l7Lz1NT----
+Content-Type: text/html
+Content-ID: <frame-36E47E3A7F5E29C9A7B03C45F210CB5D@mhtml.blink>
+Content-Transfer-Encoding: binary
+Content-Location: http://localhost:7700/index.html
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><link rel="stylesheet" type="text/css" href="cid:css-1248c27b-cea2-4641-ab4b-c8169c16062c@mhtml.blink" />
+  
+  <title>Watch Embeder</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://localhost:7700/index.css">
+ </head><div style="all: initial;"><template shadowmode="open"><div id="eruda" class="eruda-container" contenteditable="false"><div class="eruda-dev-tools" style="height: 50%;"><div class="eruda-resize-gutter"></div><div class="eruda-nav-bar-container"><div class="eruda-nav-bar"><div class="eruda-nav-bar-item eruda-active">console</div><div class="eruda-nav-bar-item">elements</div><div class="eruda-nav-bar-item">network</div><div class="eruda-nav-bar-item">resources</div><div class="eruda-nav-bar-item">settings</div></div><div class="eruda-bottom-bar" style="width: 0px; left: 0px;"></div></div><div class="eruda-tools"><div id="eruda-resources" class="eruda-resources eruda-tool"><div class="eruda-section eruda-local-storage"><h2 class="eruda-title">Local Storage<div class="eruda-btn eruda-refresh-local-storage"><span class="eruda-icon-refresh"></span></div><div class="eruda-btn eruda-clear-storage" data-type="local"><span class="eruda-icon-clear"></span></div><div class="eruda-btn eruda-search" data-type="local"><span class="eruda-icon-search"></span></div>  </h2><div class="eruda-content"><table><tbody>   <tr><td class="eruda-key">eruda-network</td><td class="eruda-storage-val" data-key="eruda-network" data-type="local">{"overrideFetch":true}</td><td class="eruda-control"><span class="eruda-icon-delete eruda-delete-storage" data-key="eruda-network" data-type="local"></span></td></tr>  <tr><td class="eruda-key">eruda-entry-button</td><td class="eruda-storage-val" data-key="eruda-entry-button" data-type="local">{"rememberPos":true,"pos":{"x":930,"y":1681}}</td><td class="eruda-control"><span class="eruda-icon-delete eruda-delete-storage" data-key="eruda-entry-button" data-type="local"></span></td></tr>  <tr><td class="eruda-key">eruda-dev-tools</td><td class="eruda-storage-val" data-key="eruda-dev-tools" data-type="local">{"transparency":1,"displaySize":80,"theme":"Light"}</td><td class="eruda-control"><span class="eruda-icon-delete eruda-delete-storage" data-key="eruda-dev-tools" data-type="local"></span></td></tr>  <tr><td class="eruda-key">eruda-console</td><td class="eruda-storage-val" data-key="eruda-console" data-type="local">{"asyncRender":false,"catchGlobalErr":true,"jsExecution":true,"overrideConsole":true,"displayExtraInfo":true,"displayUnenumerable":true,"displayGetterVal":true,"lazyEvaluation":false,"displayIfErr":fa...</td><td class="eruda-control"><span class="eruda-icon-delete eruda-delete-storage" data-key="eruda-console" data-type="local"></span></td></tr>  <tr><td class="eruda-key">eruda-elements</td><td class="eruda-storage-val" data-key="eruda-elements" data-type="local">{"overrideEventTarget":true,"observeElement":true}</td><td class="eruda-control"><span class="eruda-icon-delete eruda-delete-storage" data-key="eruda-elements" data-type="local"></span></td></tr>   </tbody></table></div></div><div class="eruda-section eruda-session-storage"><h2 class="eruda-title">Session Storage<div class="eruda-btn eruda-refresh-session-storage"><span class="eruda-icon-refresh"></span></div><div class="eruda-btn eruda-clear-storage" data-type="session"><span class="eruda-icon-clear"></span></div><div class="eruda-btn eruda-search" data-type="session"><span class="eruda-icon-search"></span></div>  </h2><div class="eruda-content"><table><tbody>  <tr><td>Empty</td></tr>  </tbody></table></div></div><div class="eruda-section eruda-cookie eruda-"><h2 class="eruda-title">Cookie<div class="eruda-btn eruda-refresh-cookie"><span class="eruda-icon-refresh"></span></div><div class="eruda-btn eruda-clear-cookie"><span class="eruda-icon-clear"></span></div><div class="eruda-btn eruda-search" data-type="cookie"><span class="eruda-icon-search"></span></div>  </h2><div class="eruda-content"><table><tbody>  <tr><td>Empty</td></tr>  </tbody></table></div></div><div class="eruda-section eruda-script eruda-"><h2 class="eruda-title">Script<div class="eruda-btn eruda-refresh-script"><span class="eruda-icon-refresh"></span></div></h2><ul class="eruda-link-list">  <li>Empty</li>  </ul></div><div class="eruda-section eruda-stylesheet eruda-"><h2 class="eruda-title">Stylesheet<div class="eruda-btn eruda-refresh-stylesheet"><span class="eruda-icon-refresh"></span></div></h2><ul class="eruda-link-list">  <li>Empty</li>  </ul></div><div class="eruda-section eruda-iframe"><h2 class="eruda-title">Iframe<div class="eruda-btn eruda-refresh-iframe"><span class="eruda-icon-refresh"></span></div></h2><ul class="eruda-link-list">  <li>Empty</li>  </ul></div><div class="eruda-section eruda-image"><h2 class="eruda-title eruda-">Image<div class="eruda-btn eruda-refresh-image"><span class="eruda-icon-refresh"></span></div></h2><ul class="eruda-image-list">  <li>Empty</li>  </ul></div></div><div id="eruda-network" class="eruda-network eruda-tool"><div class="eruda-title">Request<div class="eruda-btn eruda-clear-request"><span class="eruda-icon-clear"></span></div></div><ul class="eruda-requests"></ul><div class="eruda-detail"></div></div><div id="eruda-elements" class="eruda-elements eruda-tool"><div class="eruda-show-area"></div><div class="eruda-bottom-bar"><div class="eruda-btn eruda-select"><span class="eruda-icon eruda-icon-select"></span></div><div class="eruda-btn eruda-refresh"><span class="eruda-icon eruda-icon-refresh"></span></div><div class="eruda-btn eruda-highlight"><span class="eruda-icon eruda-icon-eye"></span></div><div class="eruda-btn eruda-reset"><span class="eruda-icon eruda-icon-reset"></span></div></div></div><div id="eruda-console" class="eruda-console eruda-tool" style="display: block;"><div class="eruda-console-container"><div class="eruda-control"><span class="eruda-icon-clear eruda-clear-console"></span> <span class="eruda-filter eruda-active" data-filter="all">All</span> <span class="eruda-filter" data-filter="error">Error</span> <span class="eruda-filter" data-filter="warn">Warning</span> <span class="eruda-filter" data-filter="info">Info</span> <span class="eruda-search-keyword"></span> <span class="eruda-icon-search eruda-search"></span></div><div class="eruda-logs-container"><div class="eruda-logs-space"><div class="eruda-fake-logs"></div><div class="eruda-logs"></div></div></div><div class="eruda-js-input" style="display: block;"><div class="eruda-buttons"><div class="eruda-button eruda-cancel">Cancel</div><div class="eruda-button eruda-execute">Execute</div></div><span class="eruda-icon-arrow-right"></span> <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea></div></div></div><div id="eruda-settings" class="eruda-settings eruda-tool"><div class="eruda-separator"></div><div id="eruda-settings1" class="eruda-switch"> Remember Entry Button Position <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings1" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div class="eruda-separator"></div><div id="eruda-settings2" class="eruda-select"><div class="eruda-head"> Theme <span class="eruda-val">Light</span></div><ul data-id="eruda-settings2">  <li>Light</li>  <li>Dark</li>  <li>Material Oceanic</li>  <li>Material Darker</li>  <li>Material Lighter</li>  <li>Material Palenight</li>  <li>Material Deep Ocean</li>  <li>Monokai Pro</li>  <li>Dracula</li>  <li>Arc Dark</li>  <li>Atom One Dark</li>  <li>Atom One Light</li>  <li>Solarized Dark</li>  <li>Solarized Light</li>  <li>Github</li>  <li>Night Owl</li>  <li>Light Owl</li>  </ul></div><div id="eruda-settings3" class="eruda-range"><div class="eruda-head"> Transparency <span class="eruda-val">1</span></div><div class="eruda-input-container" data-id="eruda-settings3"><div class="eruda-range-track"><div class="eruda-range-track-bar"><div class="eruda-range-track-progress" style="width: 100.00%"></div></div></div><input type="range" min="0.2" max="1" step="0.01" value="1"></div></div><div id="eruda-settings4" class="eruda-range"><div class="eruda-head"> Display Size <span class="eruda-val">80</span></div><div class="eruda-input-container" data-id="eruda-settings4"><div class="eruda-range-track"><div class="eruda-range-track-bar"><div class="eruda-range-track-progress" style="width: 66.67%"></div></div></div><input type="range" min="40" max="100" step="1" value="80"></div></div><div class="eruda-separator"></div><div class="eruda-text">Console</div><div id="eruda-settings5" class="eruda-switch"> Asynchronous Rendering <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings5"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings6" class="eruda-switch"> Enable JavaScript Execution <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings6" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings7" class="eruda-switch"> Catch Global Errors <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings7" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings8" class="eruda-switch"> Override Console <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings8" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings9" class="eruda-switch"> Auto Display If Error Occurs <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings9"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings10" class="eruda-switch"> Display Extra Information <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings10" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings11" class="eruda-switch"> Display Unenumerable Properties <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings11" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings12" class="eruda-switch"> Access Getter Value <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings12" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings13" class="eruda-switch"> Lazy Evaluation <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings13"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings14" class="eruda-select"><div class="eruda-head"> Max Log Number <span class="eruda-val">infinite</span></div><ul data-id="eruda-settings14">  <li>infinite</li>  <li>250</li>  <li>125</li>  <li>100</li>  <li>50</li>  <li>10</li>  </ul></div><div class="eruda-separator"></div><div class="eruda-text">Elements</div><div id="eruda-settings15" class="eruda-switch"> Catch Event Listeners <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings15" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings16" class="eruda-switch"> Auto Refresh <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings16" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div class="eruda-separator"></div><div class="eruda-text">Network</div><div id="eruda-settings17" class="eruda-switch"> Catch Fetch Requests <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings17" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div class="eruda-separator"></div><div class="eruda-text">Resources</div><div id="eruda-settings18" class="eruda-switch"> Hide Eruda Setting <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings18" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div id="eruda-settings19" class="eruda-switch"> Auto Refresh Elements <label class="eruda-checkbox"><input type="checkbox" class="eruda-input" data-id="eruda-settings19" checked="checked"> <span class="eruda-label"></span> <span class="eruda-handle"></span></label></div><div class="eruda-separator"></div></div></div></div><div class="eruda-entry-btn" style="touch-action: none; display: none; left: 382px; top: 662px;"><span class="eruda-icon-tool"></span></div><div class="eruda-elements-highlight"><div class="eruda-indicator"><div class="eruda-margin"></div><div class="eruda-border"></div><div class="eruda-padding"></div><div class="eruda-content"></div></div><div class="eruda-size"></div></div></div></template></div>
+ <body>
+  <div class="fluid-container">
+   <div class="video">
+    <div class="loading">
+     <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    </div>
+    <video src="http://localhost:7700/undefined"></video>
+    <div class="controller">
+     <p><span id="current">0:00</span><span id="duration">0:00</span></p>
+     <div class="range-container">
+      <div id="range">
+       <div id="value" style="background-color: transparent;">
+        <span></span>
+       </div>
+      </div>
+     </div>
+     <div class="controller-btns">
+      <button><i class="fas fa-undo-alt"></i></button> <button><i class="fas fa-play"></i></button> <button><i class="fas fa-redo-alt"></i></button> <button id="volume"><i class="fas fa-angle-left"></i></button>
+     </div>
+     <div class="upDownV">
+      <button><i class="fas fa-volume-up"></i></button> <input type="range" max="100" value="100">
+     </div>
+    </div>
+   </div>
+   <div class="uploadVideo">
+    <h3>upload file</h3>
+   </div>
+  </div><input type="file" accept="video/*">
+  
+ 
+</body></html>
+------MultipartBoundary--KEnKA9tHyMyHeEPub5OOMz4z13PZCzBipO8l7Lz1NT----
+Content-Type: text/css
+Content-Transfer-Encoding: binary
+Content-Location: http://localhost:7700/index.css
+
+@charset "windows-1252";
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+:focus { outline: none; }
+
+body, html { min-width: 100vw; }
+
+body, div.video, div.range-container, div.controller-btns, div.controller-btns button, div.upDownV button, div.embeder, div.active { display: flex; align-items: center; justify-content: center; }
+
+div.fluid-container { width: 100vw; overflow-y: scroll; align-items: center; justify-content: center; flex-wrap: wrap; }
+
+.fluid-container div.video { width: 100%; height: 40vh; flex-wrap: wrap; position: relative; overflow: hidden; }
+
+div.video video { width: 100%; height: 100%; background-color: black; position: relative; object-fit: contain; }
+
+div.video:hover div.controller { visibility: visible; }
+
+div.video div.controller { position: absolute; bottom: 0%; width: 100%; z-index: 1; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; visibility: hidden; }
+
+div.controller p { width: 95%; display: flex; align-items: center; justify-content: space-between; font-family: monospace; font-size: 1.2em; color: white; }
+
+div.controller p span { padding: 5px; background: rgba(0, 0, 0, 0.4); border-radius: 3px; }
+
+div.controller div.range-container { width: 60%; height: 30px; }
+
+div#range, div#range div#value { border-radius: 300px; }
+
+div.range-container div#range { width: 80%; background-color: rgba(255, 255, 255, 0.34); }
+
+div#range div#value { height: 4px; width: 0%; background-color: mediumseagreen; position: relative; display: flex; align-items: center; justify-content: flex-end; }
+
+div#value span { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: mediumseagreen; right: -6px; top: -3.57px; }
+
+div.video div.controller-btns { width: 40%; justify-content: space-around !important; }
+
+div.controller-btns button { height: 29px; width: 29px; margin: 5px; font-size: 0.9em; border: none; background-color: transparent; color: rgb(210, 210, 210); }
+
+div.controller-btns button:active { font-size: 1.2em; margin: 5px; }
+
+button#volume { font-size: 1.2em !important; }
+
+button#volume:active { font-size: 1.9em !important; margin: 5px !important; }
+
+div.upDownV { width: 50%; display: flex; align-items: center; justify-content: space-between; position: absolute; top: -35%; right: -100%; transition: right 0.5s; background: rgba(0, 0, 0, 0.34); }
+
+.upDownV input[type="range"] { width: 80%; margin-right: 8px; }
+
+.upDownV button { width: 20px; height: 20px; margin-left: 5px; border-radius: 50%; border: none; background-color: transparent; color: white; }
+
+div.uploadVideo { width: 100%; background: mediumseagreen; color: white; font-family: monospace; text-align: center; display: flex; align-items: center; justify-content: center; font-size: 1.2em; border: none; height: 60px; text-transform: capitalize; }
+
+div.uploadVideo:active { border: 2px solid mediumseagreen; background: transparent; color: mediumseagreen; }
+
+div.video div.loading { position: absolute; width: 60px; height: 60px; z-index: 2; border-radius: 300px; }
+
+div.active { transform: rotate(0deg); transform-origin: center center; animation: 1s linear 0s infinite normal none running rotateThis; }
+
+@keyframes rotateThis { 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+div.active span { position: absolute; background-color: white; border-radius: 50%; display: block; z-index: 1; }
+
+div.loading span:nth-child(1) { left: -7px; top: 5px; width: 10px; height: 10px; }
+
+div.loading span:nth-child(2) { left: -12px; top: 20px; width: 9px; height: 9px; opacity: 0.9; }
+
+div.loading span:nth-child(3) { left: -10px; top: 35px; width: 8px; height: 8px; opacity: 0.8; }
+
+div.loading span:nth-child(4) { left: -4px; top: 47px; width: 7px; height: 7px; opacity: 0.7; }
+
+div.loading span:nth-child(5) { left: 5px; top: 55px; width: 6px; height: 6px; opacity: 0.6; }
+
+div.loading span:nth-child(6) { left: 17px; top: 59.5px; width: 5px; height: 5px; opacity: 0.5; }
+
+button#compress { display: none; }
+
+input[type="file"] { display: none; }
+
+@media screen and (min-width: 900px) {
+  body, html { min-height: 100vh; }
+  div.fluid-container { width: 80vw !important; }
+  div.video { height: 360px !important; }
+}
+------MultipartBoundary--KEnKA9tHyMyHeEPub5OOMz4z13PZCzBipO8l7Lz1NT----
+Content-Type: text/css
+Content-Transfer-Encoding: binary
+Content-Location: cid:css-1248c27b-cea2-4641-ab4b-c8169c16062c@mhtml.blink
+
+@charset "windows-1252";
+
+@font-face { font-family: eruda-icon; src: url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAvoAAsAAAAAEZgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADsAAABUIIslek9TLzIAAAFEAAAAQAAAAFZHb1PUY21hcAAAAYQAAACVAAACUPKX+h1nbHlmAAACHAAAB1oAAAoQydSW4mhlYWQAAAl4AAAAMQAAADYYn0vGaGhlYQAACawAAAAdAAAAJAgEBBVobXR4AAAJzAAAABcAAABIRAb//GxvY2EAAAnkAAAAJgAAACYRiA/MbWF4cAAACgwAAAAfAAAAIAEjAQ1uYW1lAAAKLAAAASkAAAIWm5e+CnBvc3QAAAtYAAAAjwAAAMnZZQoFeJxjYGRgYOBiMGCwY2BycfMJYeDLSSzJY5BiYGGAAJA8MpsxJzM9kYEDxgPKsYBpDiBmg4gCACY7BUgAeJxjYGQ+zjiBgZWBgamX6QwDA0M/hGZ8zWDEyAEUZWBlZsAKAtJcUxgcPjJ+FGQBcWNYmBgYgTQIMwAA9pkJ13ic7ZHJDcMwDATHtnyf6iNVpKC8Um6aUAUOV5syQmA4EEEJAgn0QBc8ggTNmwbFK6pNrXcstZ541p6kesn3HblRjnOquY3eFC8OjEzMcW9lY+fg5CJHy8A/tpo/v1PWFE2da2uQO6P9lGQ06dIb7a4MBnk0yJNBng3yYrTTshrkzeh3ZTfIh0E+DfJlkLMhfwF2lyt5AAAAeJx1FltsFNf1nntnZ/YxO7PjnZ3ZB55ld9kZ73q9750FO9hYGDDYYLB5NLwMNRgCqFFpkhqFDz6IlKCUqLSfSb7cfkDVRCoVbdWgiqqNqoJUKYR+VMpHP9JWfXzSNu2ue+7sBreV4rXOPfee93OXAME/RtnPiUJIPusEwK0buhQAQxfpR3q4Ows/VOyU0n0TvqakxhW4i/eUE+6+2f1G2EkRT54+ZavER0gA2gFw6PnuO7vgdvfwLujAqZ3do91jO3t8LE+/xe2ALoGYdcBuuo1M3WD50BoJWRwYKiWqQb+i8ksI8DUW69u4yvLrsnZLa7p1Ewz6KnIGLcOwgsiNwutaOEaYZ/cT9gkJkhixvRhtx2412yBGUZXbqJuGaUBWAd2Cetttu03OQMNH9kwPD9fg3uzva93pvScOz0wXS91fvPrk6tUn/7h0fuvExNbzl56UitMzh4/NdadrMHFsH9yrDQ9P74HLVz/++5OrnOEzzum57/nxPnufmKSKUWi6mK2AxIHdnACnnwrQVTAx9blMP8Q0tDkwKDEGQwsfiKo46fPdnw8ZCmCI8F4PX0N8nQ6/WyOKEZq/7/NN4sMHC6FBw4CvSn1MhXVqvy4fsp9hrghg+bH0JtYR2C9Xuj/o3l2BWQ/A3pXuXbYLAcz+D4HHtrZGiAACIUWyHbWIKohOGWOagAqUwTXQfx4H5lmlpiEpGDeGXYG8bloYbr09DjztXCTrUeFpJDMWHwwPUEF/OTuv0Y0F7QUqsCvGFlGIXQh93QwKhpLQL1KBdrpDzs3ji79ZPH7TGfovFN5DHX2+VzLzWjFNtQvU51sxo1ZSv+hfMQcVrv8iFYUd5/9f2kOf1e0eu0fiXt2+qD5fWNB/ilihmOpVyAr2KiTC/XW8R/eq+R0/log3M7/GsEQi5/10bf2i9hn6ff0xO0wGSJrU0DMvc8/SyXPJsmVojkPdAl0BllVoDFu8YYzTZpnCv144deJmPn/zxKmPPkcujC6Nji69zMFYorpJz43lknjom6rsUKFw6+TiraFicejW4slbhULn0z4nAngeWRKbxrKAZwMl0LVeX02ya0Tle8HOZcWYphuNehvcJit2HodCmmlqQZmWDFqGWdHUOvs1U4KZgc3kmfwddgd7imAT5bKSKIk6n9WGF2BOoTlvlJt8Zr0pljIaG3nu7UMvnTm1ZXR0y6kzL53+0sEV80Xj2JXtR2ZwmnE4Z45Mjm0pfQ9eYSNbJ8c2n17649LpzWPFwq1jE6dbpeLuPd/fs7tYSsZHkGXdjwfsARnC3aFAtkxbDc+N9V3h+WZmNJPnmuoiG9+2enf12tSlysi+uZ/M7RupcOTEjm1bqze6P7rcI0492DY1dW316InP6R5jKlm5AdOXPdLd1Wf99xf2V5LwMpFzxqGF9cNq6hZt1N22GcNpRbea45RbVyj9bUktjrTPvvbW9eV2++z16ckrNRViC513a8d32vbO40u9A26otSuT09fPttvL19967Wx7pKiWun9egNg6Dz/6PvwUd2iUJDELuSy2PjY3z8Ig5FoZrQGSKTkSg0O3z52jy+Vk1M+mOocf0nOPHu14+Mbrd5bp8rlk1FLDtx91DoH2xsMdjx7RHKqVCFlbE3wCkG+SO+QxeUo+Ix2edHAnoIXZLeNM2TzLbdc7RN4H2T5BBQVw+HCn4KNHw0ANs/+J4bB6T/wVH6zeDuLcCNLQcL3WMeu9G17GcWF5ptoufzLwRC/65qF/9qhm36okDkPb9vzhsmXqYCY8Y54GjlHT8UQc9INjbc8p29t6DteAXNwQKjfbDko7ksk+VCxtIB6SjIHBcmJjQI7QgNTaLicFNR7bbyRVlpKs0bQSFJgEzJepqCUjFQgaEUGQtKg/LEgCgN8nS8GYEknKkqlZI4mNfllhsrRhdFMiaOrpaEEXFZ8/IscLzZQWEEGkqKka1EMm06KSnIiUIlHGJKG77cz8XGmEsXr9wMLi0vz+kTKl1erc/KL8B18wvKGye0oZ8Adi+Wy9MgmSX27HtXixEtfwzc42DL8ckX+lDwmBsOwXVDWghQWRGcwnFepmVNDLTqKSZ75dsXdLB2enz9I03RfUgnHHTWlBSZYTWSOd95k0FRdC/o2yHApnpCALJMJiVA0aoQF/bWMo4leMZHMoAtQXCInBoGEN5P2iX/D7RFmK2M+le5oycSsvGoKSjNhR1UchKIY3xKImz7JghKKBalpkVAJfILLBtePJSDRlumr3edaoHTy0fHL/3lKZ0XrtwMKXFw/Mlas/tvWEHJ3YpUbjg5bCRpubxaKWlLVQolBNDPA3usUSA35xDBPqjwyoGpN84ZAcEk1JDtvVuF7Uy5viNYeJq/rrhT/NzL0IaT5qax38PmUCxd87SYJTkscFKOLPHtzemfo4AH7vGDH+hWO3zKzNb7h0/tY9rruujjDgDrPqsBvo/NoqWvjfSOXzbj7/bVayUyn734+dSduepEdjlhXrfpfDp/mWbbfyaPo/itrIyAAAeJxjYGRgYABim4vFM+L5bb4ycLMwgMCt/cwpMPr/3///WVhZmIBcDgYQyQAARw4L3AAAAHicY2BkYGBhAAEW1v9///9lYWVgZEAFQgBbzAQjAAAAeJxjYGBgYMGL///HK88KVvMXAFerBEQAAAAAAAAgADQAUgBwALQBAAEiAZAB3AIsAkwCkALQAxIDQATKBQgAAHicY2BkYGAQYmRkYGcAASYg5gJCBob/YD4DAAsEATIAeJxlkD1uwkAUhMdgSAJSghQpKbNVCiKZn5IDQE9Bl8KYtTGyvdZ6QaLLCXKEHCGniHKCHChj82hgLT9/M2/e7soABviFh3p5uG1qvVq4oTpxm/Qg7JOfhTvo40W4S38o3MMbpsJ9POKdO3j+HZ0BSuEW7vEh3Kb/KeyTv4Q7eMK3cJf+j3APK/wJ9/HqDdPIFLEp3FIn+yy0Z3n+rrStUlOoSTA+WwtdaBs6vVHro6oOydS5WMXW5GrOrs4yo0prdjpywda5cjYaxeIHkcmRIoJBgbipDktoJNgjQwh71b3UK6YtKvq1VpggwPgqtWCqaJIhlcaGyTWOrBUOPG1K1zGt+FrO5KS5zGreJCMr/u+6t6MT0Q+wbaZKzDDiE1/kg+YO+T89EV6oAAAAeJxti9EOgjAUQ1fYBg4Vxe/go5ZxEZPJyOUmyN+7yKt9aE+aVhXqkFP/1aFACQ0Diwo1TnBocMYFV7S44Y4OD+U8c9r6SKM0B/LrOYkLnkn6IW1zc+CvNiGS5zqk98K0rnagSEKG8pEtfRY/DyXtpJfo94ppzKPJZCOxaz6GKUekIFpSinrzPCv1BZLnLysA") format("woff"); }
+
+[class*=" eruda-icon-"], [class^="eruda-icon-"] { font-size: 16px; font-style: normal; -webkit-font-smoothing: antialiased; font-family: eruda-icon !important; }
+
+.eruda-icon-arrow-left::before { content: "\f101 "; }
+
+.eruda-icon-arrow-right::before { content: "\f102 "; }
+
+.eruda-icon-caret-down::before { content: "\f103 "; }
+
+.eruda-icon-caret-right::before { content: "\f104 "; }
+
+.eruda-icon-clear::before { content: "\f105 "; }
+
+.eruda-icon-compress::before { content: "\f106 "; }
+
+.eruda-icon-delete::before { content: "\f107 "; }
+
+.eruda-icon-error::before { content: "\f108 "; }
+
+.eruda-icon-expand::before { content: "\f109 "; }
+
+.eruda-icon-eye::before { content: "\f10a "; }
+
+.eruda-icon-play::before { content: "\f10b "; }
+
+.eruda-icon-refresh::before { content: "\f10c "; }
+
+.eruda-icon-reset::before { content: "\f10d "; }
+
+.eruda-icon-search::before { content: "\f10e "; }
+
+.eruda-icon-select::before { content: "\f10f "; }
+
+.eruda-icon-tool::before { content: "\f110 "; }
+
+.eruda-icon-warn::before { content: "\f111 "; }
+------MultipartBoundary--KEnKA9tHyMyHeEPub5OOMz4z13PZCzBipO8l7Lz1NT------
