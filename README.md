@@ -96,6 +96,17 @@
       display: block;
     }
 
+    #ad-container {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1001;
+      width: 320px;
+      height: 50px;
+      text-align: center;
+    }
+
     @media (max-width: 600px) {
       .buttons {
         flex-direction: column;
@@ -120,16 +131,30 @@
   <iframe id="score" src="https://widget.crictimes.org/" title="Live Match Score"></iframe>
   <iframe id="news" src="https://www.yupptv.com/" title="Live News"></iframe>
 
+  <!-- ✅ Adsterra Ad Container -->
+  <div id="ad-container">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '3f96a8b7990a44c585fc94390940c75d',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/3f96a8b7990a44c585fc94390940c75d/invoke.js"></script>
+  </div>
+
   <script>
     function showIframe(id) {
-      // Hide both iframes first
+      // Hide both iframes
       document.getElementById('score').classList.remove('active');
       document.getElementById('news').classList.remove('active');
 
-      // Show only the selected iframe
+      // Show selected iframe
       document.getElementById(id).classList.add('active');
 
-      // Hide main header and buttons
+      // Hide header and buttons
       document.getElementById('mainHeader').classList.add('hidden');
       document.getElementById('mainButtons').classList.add('hidden');
 
@@ -138,13 +163,15 @@
     }
 
     function goBack() {
-      // Hide both iframes
+      // Hide all iframes
       document.getElementById('score').classList.remove('active');
       document.getElementById('news').classList.remove('active');
 
-      // Show main UI
+      // Show header and buttons
       document.getElementById('mainHeader').classList.remove('hidden');
       document.getElementById('mainButtons').classList.remove('hidden');
+
+      // Hide back button
       document.getElementById('backBtn').classList.remove('show');
     }
   </script>
