@@ -5,22 +5,26 @@
   <meta name="google-adsense-account" content="ca-pub-4683763693438850">
   <title>Live Sports App</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      text-align: center;
+      font-family: Arial, sans-serif;
       background-color: #f0f0f0;
     }
+
     h1 {
       padding: 20px;
       background-color: #007BFF;
       color: white;
       margin: 0;
     }
+
     .buttons {
-      margin: 20px;
+      margin: 10px;
+      text-align: center;
     }
+
     .buttons button {
       padding: 15px 30px;
       margin: 10px;
@@ -31,15 +35,18 @@
       background-color: #007BFF;
       color: white;
     }
+
     .buttons button:hover {
       background-color: #0056b3;
     }
+
     iframe {
-      width: 100%;
-      height: 85vh;
+      width: 100vw;
+      height: calc(100vh - 100px); /* Header (50px) + buttons (50px) = 100px */
       border: none;
       display: none;
     }
+
     iframe.active {
       display: block;
     }
@@ -51,11 +58,19 @@
     <button onclick="showIframe('score')">Live Match Score</button>
     <button onclick="showIframe('news')">News</button>
   </div>
+
   <iframe id="score" class="active" src="https://widget.crictimes.org/" title="Live Match Score"></iframe>
   <iframe id="news" src="https://www.yupptv.com/" title="Live News"></iframe>
 
   <script>
     function showIframe(id) {
+      // Hide both iframes
       document.getElementById('score').classList.remove('active');
-      document.getElementById('
-      
+      document.getElementById('news').classList.remove('active');
+
+      // Show selected iframe
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>
