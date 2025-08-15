@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin – Video App</title>
+  <style>
+    :root{
+      --bg:#0b1020; --card:#0f1730; --text:#e9eef7; --muted:#9aa4b2; --accent:#4f8cff; --accent-2:#22c55e; --danger:#ef4444;
+      --glass: rgba(255,255,255,0.04); --radius:16px;
+      --shadow: 0 8px 30px rgba(0,0,0,0.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#0a0f1d,#0d1428);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",Arial}
+    header{position:sticky;top:0;z-index:1000;background:rgba(10,15,29,0.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
+    .bar{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;gap:8px;padding:12px}
+    .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#8ab6ff);display:grid;place-items:center;font-weight:800;color:#081225}
+    main{max-width:900px;margin:16px auto;padding:0 12px 32px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:16px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px}
+    label{display:block;margin:8px 0 4px;color:var(--muted);font-size:13px}
+    input,button{background:var(--glass);border:1px solid rgba(255,255,255,0.08);color:var(--text);padding:10px;border-radius:12px}
+    button{cursor:pointer}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .muted{color:var(--muted);font-size:12px}
+    .error{color:#fecaca;background:#451a1a;border:1px solid #7f1d1d;padding:10px;border-radius:12px;margin-top:8px}
+    .ok{color:#dcfce7;background:#052e1a;border:1px solid #14532d;padding:10px;border-radius:12px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="logo">▶</div>
+        <h1 style="font-size:16px;margin:0">Admin – Video App</h1>
+      </div>
+      <a href="index.html" style="text-decoration:none;color:var(--text)">↩ Back to App</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="card" id="gate">
+      <h2 style="margin:0 0 8px">Enter Admin Password</h2>
+      <input id="pwd" placeholder="Password" type="password" />
+      <button id="enter">Enter</button>
+      <div class="muted">Password: <code>Prashant</code> (case-sensitive)</div>
+      <div id="gateErr" class="error" style="display:none"></div>
+    </div>
+
+    <div id="panel" style="display:none">
+      <div class="card">
+        <h3 style="margin:0 0 8px">Add YouTube Video by URL</h3>
+        <label>YouTube URL or ID</label>
+        <input id="ytUrl" placeholder="https://www.youtube.com/watch?v=VIDEO_ID" />
+        <button id="addYt">Save to Firestore</button>
+        <div class="muted">Video details (title, channel, duration, views) will be fetched via YouTube API key.</div>
+        <div id="ytMsg" class="" style="display:none"></div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px">Upload Local Video File</h3>
+        <div class="row">
+          <div>
+            <label>Choose file</label>
+            <input id="file" type="file" accept="video/*" />
+          </div>
+          <div>
+            <label>Title</label>
+            <input id="fileTitle" placeholder="My Uploaded Video" />
+          </div>
+        </div>
+        <button id="upload">Upload to Storage & Save</button>
+        <div class="muted">After upload, a Firestore record is created so it appears in the main app.</div>
+        <div id="upMsg" class="" style="display:none"></div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    // --- Password Gate ---
+    const gate = document.getElementById('gate');
+    const panel = document.getElementById('panel');
+    document.getElementById('enter').addEventListener('click', () => {
+      const ok = document.getElementById('pwd').value === 'Prashant';
+      if(ok){ gate.style.display='none'; panel.style.display='block'; }
+      else{
+        const e = document.getElementById('gateErr');
+        e.textContent = 'Wrong password'; e.style.display='block';
+      }
+    });
+
+    // --- Firebase ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAV8KfV0WQKHsB2o6x_HjMbeujeBIPA4Hw",
+      authDomain: "full-video-b21b2.firebaseapp.com",
+      projectId: "full-video-b21b2",
+      storageBucket: "full-video-b21b2.firebasestorage.app",
+      messagingSenderId: "530905824771",
+      appId: "1:530905824771:web:eb7c6242bbd825f0a71836",
+      measurementId: "G-C6CE0CLHP8"
+    };
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    // --- YouTube API helper ---
+    const API_KEY = 'AIzaSyAxdbmkXybMa0aQIOBLZJFZG0FTeOEhStk';
+    function ytApi(endpoint, params={}){
+      const url = new URL('https://www.googleapis.com/youtube/v3/' + endpoint);
+      params.key = API_KEY;
+      Object.entries(params).forEach(([k,v])=> url.searchParams.set(k,v));
+      return fetch(url).then(r=>r.json());
+    }
+    function extractVideoId(input){
+      // support full URL or raw ID
+      const m = String(input).match(/(?:v=|\.be\/|embed\/|shorts\/)?([A-Za-z0-9_-]{11})/);
+      return m ? m[1] : null;
+    }
+    function fmtDuration(iso){
+      const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+      if(!m) return '';
+      const h = parseInt(m[1]||0), mi=parseInt(m[2]||0), s=parseInt(m[3]||0);
+      return h ? `${h}:${String(mi).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${mi}:${String(s).padStart(2,'0')}`;
+    }
+
+    // --- Add YouTube video ---
+    document.getElementById('addYt').addEventListener('click', async () => {
+      const msg = document.getElementById('ytMsg');
+      msg.style.display='block'; msg.className='muted'; msg.textContent='Fetching...';
+      try{
+        const id = extractVideoId(document.getElementById('ytUrl').value.trim());
+        if(!id) throw new Error('Invalid YouTube URL or ID');
+        const vd = await ytApi('videos', { part: 'snippet,contentDetails,statistics', id });
+        const v = vd.items?.[0];
+        if(!v) throw new Error('Video not found');
+        const sn = v.snippet;
+        const thumb = sn.thumbnails?.high?.url || sn.thumbnails?.default?.url || '';
+        await addDoc(collection(db, 'videos'), {
+          type: 'youtube',
+          videoId: id,
+          title: sn.title || '',
+          channel: sn.channelTitle || '',
+          duration: fmtDuration(v.contentDetails?.duration || ''),
+          views: v.statistics?.viewCount || '',
+          thumbUrl: thumb,
+          createdAt: serverTimestamp()
+        });
+        msg.className='ok'; msg.textContent='Saved! It will appear on the main page.';
+      }catch(e){
+        msg.className='error'; msg.textContent='Error: ' + e.message;
+      }
+    });
+
+    // --- Upload local video file ---
+    document.getElementById('upload').addEventListener('click', async () => {
+      const msg = document.getElementById('upMsg');
+      msg.style.display='block'; msg.className='muted'; msg.textContent='Uploading...';
+      try{
+        const file = document.getElementById('file').files[0];
+        if(!file) throw new Error('Choose a video file first');
+        const title = document.getElementById('fileTitle').value.trim() || file.name;
+        const fileRef = ref(storage, 'videos/' + Date.now() + '_' + file.name.replace(/[^A-Za-z0-9._-]/g,'_'));
+        const task = uploadBytesResumable(fileRef, file);
+        await new Promise((resolve, reject)=>{
+          task.on('state_changed', ()=>{}, reject, resolve);
+        });
+        const url = await getDownloadURL(task.snapshot.ref);
+        await addDoc(collection(db, 'videos'), {
+          type: 'file',
+          fileUrl: url,
+          title,
+          channel: 'Uploaded',
+          duration: 'UPLOADED',
+          views: '',
+          thumbUrl: '',
+          createdAt: serverTimestamp()
+        });
+        msg.className='ok'; msg.textContent='Uploaded & saved! Check the main page.';
+      }catch(e){
+        msg.className='error'; msg.textContent='Error: ' + e.message;
+      }
+    });
+  </script>
+
+<script>
+function getVideoDataFromURL(url) {
+  let type = "youtube";
+  let videoId = "";
+  
+  if (url.includes("facebook.com") || url.includes("fb.watch")) {
+    type = "facebook";
+    videoId = url;
+  } else if (url.includes("youtube.com") || url.includes("youtu.be")) {
+    type = "youtube";
+    // extract youtube video ID
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    if (match && match[2].length == 11) {
+      videoId = match[2];
+    }
+  }
+  return { type, videoId };
+}
+</script>
+
+</body>
+</html>
