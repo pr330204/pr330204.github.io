@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video App – Search & Watch (YouTube Data API v3)</title>
+  <style>
+    :root{
+      --bg:#0b1020; --card:#0f1730; --text:#e9eef7; --muted:#9aa4b2; --accent:#4f8cff; --accent-2:#22c55e; --danger:#ef4444;
+      --glass: rgba(255,255,255,0.04); --radius:16px;
+      --shadow: 0 8px 30px rgba(0,0,0,0.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#0a0f1d,#0d1428);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",Arial}
+    header{position:sticky;top:0;z-index:1000;background:rgba(10,15,29,0.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
+    .bar{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto auto;gap:8px;padding:12px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#8ab6ff);display:grid;place-items:center;font-weight:800;color:#081225}
+    .brand h1{font-size:16px;margin:0}
+    .search{display:flex;gap:8px}
+    .search input{flex:1;background:var(--glass);border:1px solid rgba(255,255,255,0.08);color:var(--text);padding:10px 12px;border-radius:12px;outline:none}
+    .search button{background:var(--accent);border:0;color:#031028;font-weight:700;padding:10px 14px;border-radius:12px;cursor:pointer}
+    .filters{display:flex;gap:8px;align-items:center}
+    select,.btn{background:var(--glass);border:1px solid rgba(255,255,255,0.08);color:var(--text);padding:10px;border-radius:12px;cursor:pointer}
+    main{max-width:1100px;margin:16px auto;padding:0 12px 20px}
+    .player{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:10px}
+    .player iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}
+    .player .meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px}
+    .title{font-size:16px;font-weight:700;margin:6px 0}
+    .muted{color:var(--muted);font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:16px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .12s ease}
+    .card:hover{transform:translateY(-2px)}
+    .thumb{position:relative}
+    .thumb img{display:block;width:100%;height:150px;object-fit:cover;background:#000}
+    .dur{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,0.7);padding:2px 6px;border-radius:8px;font-size:12px}
+    .info{padding:10px}
+    .row{display:flex;justify-content:space-between;gap:8px}
+    .name{font-size:14px;font-weight:600;line-height:1.3}
+    .ch{font-size:12px;color:var(--muted)}
+    .actions{display:flex;justify-content:center;margin:16px 0}
+    .load{background:var(--accent-2);border:0;padding:10px 14px;border-radius:12px;color:#05120a;font-weight:700;cursor:pointer}
+    .note{margin:12px 0;color:var(--muted);font-size:12px}
+    .error{color:#fecaca;background:#451a1a;border:1px solid #7f1d1d;padding:10px;border-radius:12px}
+    @media (max-width:640px){
+      .bar{grid-template-columns:1fr;gap:10px}
+      .filters{justify-content:space-between}
+    }
+  </style>
+</head>
+<body>
+
+<div style="background:#333;padding:10px;text-align:right;">
+  <a href="admin.html" style="color:white;font-weight:bold;text-decoration:none;">Go to Admin Page</a>
+</div>
+
+  <header>
+    <div class="bar">
+      <div class="brand">
+        <div class="logo">▶</div>
+        <h1>Video App</h1>
+      </div>
+      <div class="search">
+        <input id="q" placeholder="Search videos..." />
+        <button id="go">Search</button>
+      </div>
+      <div class="filters">
+        <select id="sort">
+          <option value="relevance">Relevance</option>
+          <option value="date">Upload date</option>
+          <option value="viewCount">View count</option>
+          <option value="rating">Rating</option>
+        </select>
+        <select id="duration">
+          <option value="any">Any length</option>
+          <option value="short">Short (&lt;4 min)</option>
+          <option value="medium">Medium (4–20 min)</option>
+          <option value="long">Long (&gt;20 min)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="player">
+      <iframe id="player" src="" allowfullscreen></iframe>
+      <div class="meta">
+        <div>
+          <div id="vtitle" class="title">Select a video to start watching</div>
+          <div class="muted" id="vch"></div>
+        </div>
+        <div class="muted" id="vstats"></div>
+      </div>
+    </section>
+    <div id="error" class="error" style="display:none"></div>
+    <div id="note" class="note">Uses YouTube Data API v3 + Firebase</div>
+    <section id="results" class="grid"></section>
+    <div class="actions"><button id="more" class="load" style="display:none">Load more</button></div>
+  </main>
+
+  <script type="module">
+    /* -------------------- Firebase Setup -------------------- */
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+    import { getFirestore, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAV8KfV0WQKHsB2o6x_HjMbeujeBIPA4Hw",
+      authDomain: "full-video-b21b2.firebaseapp.com",
+      projectId: "full-video-b21b2",
+      storageBucket: "full-video-b21b2.firebasestorage.app",
+      messagingSenderId: "530905824771",
+      appId: "1:530905824771:web:eb7c6242bbd825f0a71836",
+      measurementId: "G-C6CE0CLHP8"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+    console.log("Firebase initialized");
+
+    /* -------------------- YouTube App Logic -------------------- */
+    const API_KEY = 'AIzaSyAxdbmkXybMa0aQIOBLZJFZG0FTeOEhStk';
+    const els = {
+      q: document.getElementById('q'),
+      go: document.getElementById('go'),
+      results: document.getElementById('results'),
+      more: document.getElementById('more'),
+      sort: document.getElementById('sort'),
+      duration: document.getElementById('duration'),
+      error: document.getElementById('error'),
+      player: document.getElementById('player'),
+      vtitle: document.getElementById('vtitle'),
+      vch: document.getElementById('vch'),
+      vstats: document.getElementById('vstats'),
+    };
+    let nextPageToken = null;
+
+    function clearError(){ els.error.style.display='none'; els.error.textContent=''; }
+    function showError(msg){ els.error.style.display='block'; els.error.textContent = msg; }
+
+    function api(endpoint, params={}) {
+      const url = new URL('https://www.googleapis.com/youtube/v3/' + endpoint);
+      params.key = API_KEY;
+      Object.entries(params).forEach(([k,v])=> url.searchParams.set(k,v));
+      return fetch(url).then(async r=>{
+        if(!r.ok){
+          const txt = await r.text();
+          throw new Error(txt);
+        }
+        return r.json();
+      });
+    }
+
+    function fmtDuration(iso){
+      const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+      if(!m) return '';
+      const h = parseInt(m[1]||0), mi=parseInt(m[2]||0), s=parseInt(m[3]||0);
+      return h ? `${h}:${String(mi).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${mi}:${String(s).padStart(2,'0')}`;
+    }
+
+    function fmtCount(n){ n=Number(n||0); if(n>=1e9) return (n/1e9).toFixed(1)+'B'; if(n>=1e6) return (n/1e6).toFixed(1)+'M'; if(n>=1e3) return (n/1e3).toFixed(1)+'K'; return n.toString(); }
+
+    function renderCards(items){
+      const frag = document.createDocumentFragment();
+      items.forEach(it=>{
+        const type = it._type || 'youtube';
+        const vid = it.id?.videoId || it.videoId;
+        const sn = it.snippet || it.sn || {};
+        const details = it._details || {};
+        const thumb = it.thumbUrl || (vid ? `https://i.ytimg.com/vi/${vid}/hqdefault.jpg` : '');
+        const title = sn.title || it.title || 'Untitled';
+        const channel = sn.channelTitle || it.channel || '';
+        const views = details.views || it.views || '';
+        const duration = details.duration || it.duration || (type==='file' ? 'UPLOADED' : '');
+
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="thumb">
+            <img alt="${title}" src="${thumb || 'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'480\' height=\'270\'><rect width=\'100%\' height=\'100%\' fill=\'%230b1020\'/></svg>'}" loading="lazy" />
+            <span class="dur">${duration}</span>
+          </div>
+          <div class="info">
+            <div class="name">${title}</div>
+            <div class="row">
+              <div class="ch">${channel}</div>
+              <div class="ch">${views ? fmtCount(views)+' views' : ''}</div>
+            </div>
+          </div>`;
+
+        card.addEventListener('click', ()=> {
+          if(type==='file' && it.fileUrl){
+            playLocal(it.fileUrl, title, channel, views);
+          }else{
+            play(vid, title, channel, views);
+          }
+        });
+        frag.appendChild(card);
+      });
+      els.results.appendChild(frag);
+    }
+
+    function play(id, title, channel, views){
+      // hide local video if present
+      const local = document.getElementById('localPlayer');
+      if(local){ local.pause(); local.remove(); }
+      els.player.style.display = 'block';
+      els.player.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      els.vtitle.textContent = title || '';
+      els.vch.textContent = channel || '';
+      els.vstats.textContent = views? (fmtCount(views)+ ' views') : '';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function playLocal(url, title, channel, views){
+      els.player.src = '';
+      els.player.style.display = 'none';
+      let local = document.getElementById('localPlayer');
+      if(!local){
+        local = document.createElement('video');
+        local.id = 'localPlayer';
+        local.controls = true;
+        local.autoplay = true;
+        // inline styles to mimic iframe styling without touching CSS block
+        local.style.width = '100%';
+        local.style.aspectRatio = '16/9';
+        local.style.border = '0';
+        local.style.borderRadius = '12px';
+        local.style.background = '#000';
+        els.player.parentElement.insertBefore(local, els.player);
+      }
+      local.src = url;
+      local.play();
+      els.vtitle.textContent = title || '(Uploaded Video)';
+      els.vch.textContent = channel || '';
+      els.vstats.textContent = views? (fmtCount(views)+ ' views') : '';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    async function search(reset=true){
+      clearError();
+      const q = els.q.value.trim();
+      if(reset){ els.results.innerHTML=''; nextPageToken=null; }
+      const params = {
+        part:'snippet', q: q || 'trending', maxResults: 18, type:'video',
+        order: els.sort.value, regionCode: 'IN', safeSearch: 'moderate', videoDuration: els.duration.value
+      };
+      if(nextPageToken) params.pageToken = nextPageToken;
+
+      try{
+        const data = await api('search', params);
+        nextPageToken = data.nextPageToken || null;
+        const ids = data.items.filter(x=>x.id.kind==='youtube#video').map(x=>x.id.videoId);
+        let details = {};
+        if(ids.length){
+          const vd = await api('videos', { part:'contentDetails,statistics', id: ids.join(',') });
+          vd.items.forEach(v=>{
+            details[v.id] = {
+              duration: fmtDuration(v.contentDetails?.duration||''),
+              views: v.statistics?.viewCount || 0,
+            };
+          });
+        }
+        data.items.forEach(it=>{ if(it.id.kind==='youtube#video') it._details = details[it.id.videoId] || {}; });
+        renderCards(data.items);
+        els.more.style.display = nextPageToken? 'inline-block':'none';
+      }catch(err){
+        console.error(err);
+        showError('YouTube fetch failed. Check API key or quota.');
+      }
+    }
+
+    async function loadAdminVideos(){
+      try{
+        const qref = query(collection(db, 'videos'), orderBy('createdAt', 'desc'), limit(30));
+        const snap = await getDocs(qref);
+        const items = [];
+        snap.forEach(doc=>{
+          const d = doc.data();
+          items.push({
+            _type: d.type, // 'youtube' or 'file'
+            videoId: d.videoId || null,
+            title: d.title || '',
+            channel: d.channel || '',
+            views: d.views || '',
+            duration: d.duration || '',
+            thumbUrl: d.thumbUrl || '',
+            fileUrl: d.fileUrl || ''
+          });
+        });
+        renderCards(items);
+      }catch(e){
+        console.error(e);
+        // don't show error loudly to users
+      }
+    }
+
+    // Events
+    els.go.addEventListener('click', ()=> { els.results.innerHTML=''; loadAdminVideos(); search(true); });
+    els.q.addEventListener('keydown', e=>{ if(e.key==='Enter'){ els.results.innerHTML=''; loadAdminVideos(); search(true); }});
+    els.more.addEventListener('click', ()=> search(false));
+    els.sort.addEventListener('change', ()=> { els.results.innerHTML=''; loadAdminVideos(); search(true); });
+    els.duration.addEventListener('change', ()=> { els.results.innerHTML=''; loadAdminVideos(); search(true); });
+
+    // initial
+    loadAdminVideos();
+    search(true);
+  </script>
+</body>
+</html>
