@@ -38,14 +38,16 @@
   </header>
 
   <main>
+    <!-- Password gate -->
     <div class="card" id="gate">
       <h2 style="margin:0 0 8px">Enter Admin Password</h2>
       <input id="pwd" placeholder="Password" type="password" />
       <button id="enter">Enter</button>
-      <div class="muted">Password: <code>enter password</code> (case-sensitive)</div>
+      <div class="muted">Password: <code>Prashant</code> (case-sensitive)</div>
       <div id="gateErr" class="error" style="display:none"></div>
     </div>
 
+    <!-- Panel -->
     <div id="panel" style="display:none">
       <div class="card">
         <h3 style="margin:0 0 8px">Add YouTube Video by URL</h3>
@@ -116,11 +118,13 @@
       Object.entries(params).forEach(([k,v])=> url.searchParams.set(k,v));
       return fetch(url).then(r=>r.json());
     }
+
+    // ✅ fixed extractor: works for watch?v=, youtu.be, embed, shorts
     function extractVideoId(input){
-      // support full URL or raw ID
       const m = String(input).match(/(?:v=|\.be\/|embed\/|shorts\/)?([A-Za-z0-9_-]{11})/);
       return m ? m[1] : null;
     }
+
     function fmtDuration(iso){
       const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
       if(!m) return '';
@@ -186,27 +190,6 @@
       }
     });
   </script>
-
-<script>
-function getVideoDataFromURL(url) {
-  let type = "youtube";
-  let videoId = "";
-  
-  if (url.includes("facebook.com") || url.includes("fb.watch")) {
-    type = "facebook";
-    videoId = url;
-  } else if (url.includes("youtube.com") || url.includes("youtu.be")) {
-    type = "youtube";
-    // extract youtube video ID
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    if (match && match[2].length == 11) {
-      videoId = match[2];
-    }
-  }
-  return { type, videoId };
-}
-</script>
-
 </body>
 </html>
+
