@@ -4,45 +4,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Video App – Front Page</title>
-    <!-- ✅ AdSense Verification Tag -->
+      <!-- ✅ AdSense Verification Tag -->
   <meta name="google-adsense-account" content="ca-pub-4683763693438850">
   
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #0b1020; color: #fff; }
-    header { background: #111831; padding: 15px; text-align: center; }
-    header h1 { margin: 0; font-size: 22px; color: #00d9ff; }
-    #searchBar { width: 90%; max-width: 500px; padding: 10px; margin-top: 10px; border: none; border-radius: 20px; font-size: 16px; }
-    .video-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; padding: 20px; }
-    .video-card { background: #161d3a; border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s ease; }
-    .video-card:hover { transform: scale(1.05); }
-    .video-card img { width: 100%; height: 140px; object-fit: cover; }
-    .video-info { padding: 10px; }
-    .video-info h3 { margin: 0; font-size: 16px; color: #fff; }
-    .player-container { background: #000; width: 100%; margin: 0 auto; padding: 0; text-align: center; }
-    iframe, video { width: 100%; height: 250px; border: none; }
-    @media(min-width:768px){ iframe, video { height: 480px; } }
-    #loadMoreBtn { padding: 10px 20px; border: none; border-radius: 6px; background: #00d9ff; color: #000; font-size: 16px; cursor: pointer; margin: 20px auto; display: none; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #fff;
+    }
+
+    header {
+      background: #111831;
+      padding: 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #00d9ff;
+    }
+
+    #searchBar {
+      width: 90%;
+      max-width: 500px;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+
+    .video-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .video-card {
+      background: #161d3a;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .video-card:hover {
+      transform: scale(1.05);
+    }
+
+    .video-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .video-info {
+      padding: 10px;
+    }
+
+    .video-info h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .player-container {
+      background: #000;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      text-align: center;
+    }
+
+    iframe, video {
+      width: 100%;
+      height: 250px;
+      border-radius: 0;
+      border: none;
+    }
+
+    @media(min-width:768px){
+      iframe, video {
+        height: 480px;
+      }
+    }
+
+    .actions {
+      text-align: center;
+      margin: 20px;
+    }
+    .load {
+      background: #22c55e;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 12px;
+      color: #05120a;
+      font-weight: 700;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>📺 Video App</h1>
-    <input type="text" id="searchBar" placeholder="Search videos...">
+    <input type="text" id="searchBar" placeholder="Search YouTube videos...">
   </header>
 
-  <div class="player-container" id="playerContainer"><p>Select a video to play</p></div>
+  <div class="player-container" id="playerContainer">
+    <p>Select a video to play</p>
+  </div>
 
   <main>
     <div class="video-list" id="videoList"></div>
-    <div style="text-align:center;"><button id="loadMoreBtn">Load More</button></div>
+    <div class="actions">
+      <button id="loadMore" class="load" style="display:none;">Load More</button>
+    </div>
   </main>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+    // Firebase config
     const firebaseConfig = {
-      apiKey: "AIzaSyCo_okh0v_rO0UE7NccEzqwOv7YPnSKbTg",
+      apiKey: "AIzaSyAeylavh96k04NrlNab3FwoI6vEeAQ9DmU",
       authDomain: "streamlined-878dd.firebaseapp.com",
       projectId: "streamlined-878dd",
       storageBucket: "streamlined-878dd.appspot.com",
@@ -53,97 +143,110 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    const API_KEY = "AIzaSyCo_okh0v_rO0UE7NccEzqwOv7YPnSKbTg";
+
     const videoListEl = document.getElementById("videoList");
     const playerContainer = document.getElementById("playerContainer");
     const searchBar = document.getElementById("searchBar");
-    const loadMoreBtn = document.getElementById("loadMoreBtn");
+    const loadMoreBtn = document.getElementById("loadMore");
 
     let allVideos = [];
-    let youtubeNextPageToken = null;
-    let searchQueries = ["all video","CID"];
-    let currentQueryIndex = 0;
+    let nextPageToken = null;
+    let currentQuery = "trending";
 
-    async function loadVideos(initial = true) {
-      let firebaseVideos = [];
-      if (initial) {
-        const querySnapshot = await getDocs(collection(db, "videos"));
-        querySnapshot.forEach((doc) => {
-          firebaseVideos.push({
-            ...doc.data(),
-            createdAt: doc.data().createdAt ? doc.data().createdAt.seconds : Date.now()
-          });
-        });
-      }
-      const apiKey = "AIzaSyCo_okh0v_rO0UE7NccEzqwOv7YPnSKbTg";
-      let youtubeVideos = [];
-      try {
-        const searchQuery = searchQueries[currentQueryIndex];
-        currentQueryIndex = (currentQueryIndex + 1) % searchQueries.length;
-        let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=8&order=date&q=${encodeURIComponent(searchQuery)}&key=${apiKey}`;
-        if (!initial && youtubeNextPageToken) url += `&pageToken=${youtubeNextPageToken}`;
-        const res = await fetch(url);
-        const data = await res.json();
-        youtubeNextPageToken = data.nextPageToken || null;
-        youtubeVideos = data.items.map(item => ({
-          title: item.snippet.title,
-          thumbnail: item.snippet.thumbnails.medium.url,
-          url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
-          createdAt: new Date(item.snippet.publishedAt).getTime() / 1000
-        }));
-      } catch (e) { console.error("YouTube fetch error", e); }
-      if (initial) allVideos = [...firebaseVideos, ...youtubeVideos];
-      else allVideos = [...allVideos, ...youtubeVideos];
-      const unique = [], seen = new Set();
-      for (let v of allVideos) { if (!seen.has(v.url)) { unique.push(v); seen.add(v.url); } }
-      allVideos = unique.sort((a, b) => b.createdAt - a.createdAt);
-      displayVideos(allVideos, !initial);
+    // ---- Firebase Fetch ----
+    async function loadVideosFromFirebase() {
+      const snap = await getDocs(collection(db, "videos"));
+      const vids = [];
+      snap.forEach(doc => vids.push(doc.data()));
+      return vids;
     }
 
-    function displayVideos(videos, append = false) {
-      if (!append) videoListEl.innerHTML = "";
+    // ---- YouTube Fetch ----
+    async function loadVideosFromYouTube(query="trending", pageToken="") {
+      const url = new URL("https://www.googleapis.com/youtube/v3/search");
+      url.searchParams.set("part","snippet");
+      url.searchParams.set("q",query);
+      url.searchParams.set("type","video");
+      url.searchParams.set("maxResults","6");
+      url.searchParams.set("key",API_KEY);
+      if(pageToken) url.searchParams.set("pageToken", pageToken);
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      nextPageToken = data.nextPageToken || null;
+
+      return data.items.map(item => ({
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.medium.url,
+        url: `https://www.youtube.com/watch?v=${item.id.videoId}`
+      }));
+    }
+
+    // ---- Merge + Display ----
+    async function loadAllVideos(query="trending", reset=true) {
+      currentQuery = query;
+      if (reset) {
+        videoListEl.innerHTML = "";
+        allVideos = [];
+      }
+
+      if (reset) {
+        const firebaseVideos = await loadVideosFromFirebase();
+        allVideos = [...firebaseVideos];
+        displayVideos(firebaseVideos);
+      }
+
+      const ytVideos = await loadVideosFromYouTube(query, reset ? "" : nextPageToken);
+      allVideos = [...allVideos, ...ytVideos];
+      displayVideos(ytVideos);
+
+      loadMoreBtn.style.display = nextPageToken ? "inline-block" : "none";
+    }
+
+    function displayVideos(videos) {
       videos.forEach(video => {
         const card = document.createElement("div");
         card.className = "video-card";
-        card.innerHTML = `<img src="${video.thumbnail}" alt="thumbnail"><div class="video-info"><h3>${video.title}</h3></div>`;
+        card.innerHTML = `
+          <img src="${video.thumbnail}" alt="thumbnail">
+          <div class="video-info"><h3>${video.title}</h3></div>
+        `;
         card.onclick = () => playVideo(video);
         videoListEl.appendChild(card);
       });
-      loadMoreBtn.style.display = "inline-block";
     }
 
     function playVideo(video) {
       let playerHTML = "";
-      if (video.url.includes("youtube.com") || video.url.includes("youtu.be")) {
-        let videoId = video.url.split("v=")[1] || video.url.split("/").pop();
-        videoId = videoId.split("&")[0];
+      if (video.url.includes("youtube.com")) {
+        let videoId = video.url.split("v=")[1];
         playerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
       } else if (video.url.includes("drive.google.com")) {
         let fileIdMatch = video.url.match(/[-\w]{25,}/);
-        if (fileIdMatch) playerHTML = `<iframe src="https://drive.google.com/file/d/${fileIdMatch[0]}/preview" allowfullscreen></iframe>`;
-        else playerHTML = `<p>Invalid Google Drive link</p>`;
+        if (fileIdMatch) {
+          let fileId = fileIdMatch[0];
+          playerHTML = `<iframe src="https://drive.google.com/file/d/${fileId}/preview" allowfullscreen></iframe>`;
+        }
       } else {
-        playerHTML = `<video id="customVideo" controls src="${video.url}"></video><button onclick="makeFullScreen()">Fullscreen</button>`;
+        playerHTML = `<video controls src="${video.url}"></video>`;
       }
       playerContainer.innerHTML = playerHTML;
     }
 
-    searchBar.addEventListener("input", () => {
-      const searchText = searchBar.value.toLowerCase();
-      const filtered = allVideos.filter(v => v.title.toLowerCase().includes(searchText));
-      displayVideos(filtered);
+    // Events
+    searchBar.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        loadAllVideos(searchBar.value, true);
+      }
+    });
+    loadMoreBtn.addEventListener("click", () => {
+      loadAllVideos(currentQuery, false);
     });
 
-    window.makeFullScreen = function () {
-      const video = document.getElementById("customVideo");
-      if (video) {
-        if (video.requestFullscreen) video.requestFullscreen();
-        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
-        else if (video.msRequestFullscreen) video.msRequestFullscreen();
-      }
-    };
-
-    loadMoreBtn.addEventListener("click", () => loadVideos(false));
-    loadVideos(true);
+    // Initial load
+    loadAllVideos();
   </script>
 </body>
 </html>
