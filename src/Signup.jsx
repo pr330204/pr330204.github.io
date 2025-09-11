@@ -1,0 +1,1 @@
+export default function Signup(){return <h1>Signup Page (Email + OTP + Username + Password)</h1>}
