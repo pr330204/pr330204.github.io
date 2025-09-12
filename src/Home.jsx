@@ -1,1 +1,0 @@
-export default function Home(){return <h1>Home Page (User List + Search + Follow)</h1>}
